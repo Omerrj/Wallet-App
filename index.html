@@ -17,6 +17,7 @@
     <div class="header">
       <p>WalletApp</p>
     </div>
+
     <div id="NoWalletView">
       <div class="NowalletView">
         <p>
@@ -58,5 +59,33 @@
         <button id="create-btn">Create Wallet</button>
       </div>
     </div>
+
+    <div id="walletView">
+      <p id="walletBalance">Wallet Balance:</p>
+      <form id="transactionForm">
+        <div>
+          <label for="transaction">Make a transaction:</label>
+          <input type="number" name="transaction" id="transactionValue" />
+        </div>
+
+        <div>
+          <label for="notes">Transaction notes:</label>
+          <input type="text" name="notes" id="transNotes" />
+        </div>
+
+        <div>
+          <button id="incomeBtn" class="transactionType">Income</button>
+          <button id="expenseBtn" class="transactionType">Expense</button>
+        </div>
+        <div>
+          <label for="tags">Transaction tags:</label>
+          <input type="text" name="tags" id="transTags" />
+        </div>
+        <button>Add Transaction</button>
+      </form>
+
+      <div id="transactions"></div>
+    </div>
   </body>
+  <script src="./scripts.js"></script>
 </html>

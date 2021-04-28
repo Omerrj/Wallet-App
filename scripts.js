@@ -6,12 +6,21 @@ const currency2 = document.getElementById("currency-inp-2");
 const balanceInp = document.getElementById("balance-inp");
 const description = document.getElementById("description-inp");
 
+const wallets = [];
+
 class Wallet {
   constructor(name, currency, balance, description) {
     this.name = name;
     this.currency = currency;
     this.balance = balance;
     this.description = description;
+    this.transactions = [];
+  }
+
+  transaction(transaction) {
+    const { value, type } = transaction;
+    this.transactions.push(transaction);
+    this.balance += value * type;
   }
 }
 
@@ -23,3 +32,15 @@ class Transaction {
     this.tags = tags;
   }
 }
+
+createBtn.onclick = () => {
+  const wallet = new Wallet(
+    nameInp.value,
+    1,
+    Number(balanceInp.value),
+    description.value
+  );
+
+  wallets.push(wallet);
+  console.log(wallets);
+};
