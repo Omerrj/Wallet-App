@@ -1,20 +1,86 @@
-#form-card {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  margin: auto;
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 #form-card-top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid black;
+  padding: 0px 12px;
 }
-h3 {
-  margin: 0px 16px;
+#form-card {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto;
+ border-radius: 5px;
 }
-* {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+#form-card{
+  background-color: rgb(239, 235, 255);
+}
+#form-card-content{
+  /* border: 1px solid rgb(124, 124, 124); */
+  padding: 16px;
+
+}
+#createWallet-form{
+  display: flex;
+  flex-direction: row;
+  
+}
+.labels{
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+}
+.labels label{
+  padding-bottom: 26px;
+}
+.inputs{
+  display: flex;
+  flex-direction: column;
+  
+}
+.inputs input{
+  margin-bottom: 24px;
+  margin-left: 34px;
+  border-radius: 5px;
+  border-style: none;
+  background-color:white;
+  /* padding-bottom: 8px; */
+  height: 24px;
+  width: 250px;
+}
+.radio-btn input{
+  height: 16px;
+  margin-bottom: 28px;
+  width: 12px;
+}
+
+
+#form-card-bottom{
+ /* position: relative; */
+ padding: 12px 16px;
+ display: flex;
+ justify-content: flex-end;
+}
+#create-btn{
+  color: rgb(255, 255, 255);
+ border-style: none;
+  padding: 8px 16px;
+  background-color:  rgb(44, 124, 199);
+  border-radius: 5px;
+  margin-left: 12px;
+}
+#close-btn{
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid rgb(179, 179, 179);
+}
+h3{
+  margin: 16px 16px;
 }
 .NowalletView {
   width: fit-content;

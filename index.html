@@ -40,22 +40,52 @@
         <h3 id="form-close">X</h3>
       </div>
       <div id="form-card-content">
-        <form id="createWallet-form">
+        <!-- <form id="createWallet-form">
+          <div class="Name">
           <label for="Name">Name</label>
           <input type="text" name="Name" id="name-inp" />
-          <label for="Balance">Balance</label>
+        </div>
+        <div class="Currency">
+          <label for="Currency">Currency</label>
           <input type="radio" name="Currency" id="currency-inp-1" value="1" />
           <label for="Currency">USD</label>
           <input type="radio" name="Currency" id="currency-inp-2" value="2" />
           <label for="Currency">IQD</label>
+        </div>
+        <div class="Balance">
+          <label for="Balance">Balance</label>
           <input type="number" name="Balance" id="balance-inp" />
+        </div>
+        <div class="Description">
           <label for="Description">Description</label>
           <input type="text" name="Description" id="description-inp" />
+        </div>
+        </form> -->
+        <form id="createWallet-form">
+          <div class="labels">
+          <label for="Name">Name</label>
+          <label for="Currency">Currency</label>
+          <label for="Balance">Balance</label>
+          <label for="Description">Description</label>
+        </div>
+        <div class="inputs">
+          <input type="text" name="Name" id="name-inp" />
+        <div class="radio-btn">
+          <input type="radio" name="Currency" id="currency-inp-1" value="1" />
+          <label for="Currency">USD</label>
+          <input type="radio" name="Currency" id="currency-inp-2" value="2" />
+          <label for="Currency">IQD</label>
+        </div>
+          <input type="number" name="Balance" id="balance-inp"/>
+          <input type="text" name="Description" id="description-inp" />
+        </div>
         </form>
+
+
       </div>
       <div id="form-card-bottom">
         <button id="close-btn">Close</button>
-        <button id="create-btn">Create Wallet</button>
+        <button id="create-btn">Create</button>
       </div>
     </div>
   </body>
