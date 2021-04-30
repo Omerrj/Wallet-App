@@ -14,6 +14,40 @@
     <title>Wallet</title>
   </head>
   <body>
+    <div id="form-card" class="hide">
+      <div id="card">
+        <div id="form-card-top">
+          <h3>Create new wallet</h3>
+          <h3 id="form-close">X</h3>
+        </div>
+        <div id="form-card-content">
+          <form id="createWallet-form">
+            <label for="Name">Name</label>
+            <input type="text" name="Name" id="name-inp" />
+
+            <label for="Balance">Balance</label>
+            <input type="radio" name="Currency" id="currency-inp-1" value="$" />
+            <label for="Currency">USD</label>
+
+            <input
+              type="radio"
+              name="Currency"
+              id="currency-inp-2"
+              value="IQD"
+            />
+            <label for="Currency">IQD</label>
+
+            <input type="number" name="Balance" id="balance-inp" value="0" />
+            <label for="Description">Description</label>
+            <input type="text" name="Description" id="description-inp" />
+          </form>
+        </div>
+        <div id="form-card-bottom">
+          <button id="close-btn">Close</button>
+          <button id="create-btn">Create Wallet</button>
+        </div>
+      </div>
+    </div>
     <div class="header">
       <p>WalletApp</p>
     </div>
@@ -35,37 +69,17 @@
       </div>
     </div>
 
-    <div id="form-card">
-      <div id="form-card-top">
-        <h3>Create new wallet</h3>
-        <h3 id="form-close">X</h3>
-      </div>
-      <div id="form-card-content">
-        <form id="createWallet-form">
-          <label for="Name">Name</label>
-          <input type="text" name="Name" id="name-inp" />
-          <label for="Balance">Balance</label>
-          <input type="radio" name="Currency" id="currency-inp-1" value="1" />
-          <label for="Currency">USD</label>
-          <input type="radio" name="Currency" id="currency-inp-2" value="2" />
-          <label for="Currency">IQD</label>
-          <input type="number" name="Balance" id="balance-inp" />
-          <label for="Description">Description</label>
-          <input type="text" name="Description" id="description-inp" />
-        </form>
-      </div>
-      <div id="form-card-bottom">
-        <button id="close-btn">Close</button>
-        <button id="create-btn">Create Wallet</button>
-      </div>
-    </div>
-
-    <div id="walletView">
+    <div id="walletView" class="hide">
       <p id="walletBalance">Wallet Balance:</p>
       <form id="transactionForm">
         <div>
           <label for="transaction">Make a transaction:</label>
-          <input type="number" name="transaction" id="transactionValue" />
+          <input
+            type="number"
+            name="transaction"
+            id="transactionValue"
+            value="0"
+          />
         </div>
 
         <div>
@@ -74,14 +88,19 @@
         </div>
 
         <div>
-          <button id="incomeBtn" class="transactionType">Income</button>
-          <button id="expenseBtn" class="transactionType">Expense</button>
+          <button id="incomeBtn" class="transactionType" value="1">
+            Income
+          </button>
+          <button id="expenseBtn" class="transactionType" value="-1">
+            Expense
+          </button>
         </div>
+
         <div>
           <label for="tags">Transaction tags:</label>
           <input type="text" name="tags" id="transTags" />
         </div>
-        <button>Add Transaction</button>
+        <button id="addTransaction">Add Transaction</button>
       </form>
 
       <div id="transactions"></div>
