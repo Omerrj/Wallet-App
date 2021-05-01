@@ -1,20 +1,104 @@
-#form-card {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  margin: auto;
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 #form-card-top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid black;
+  padding: 0px 12px;
 }
+#form-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+#card {
+  position: relative;
+  background-color: white;
+  width: fit-content;
+  left: 35%;
+  top: 50px;
+  border-radius: 5px;
+  background-color: aliceblue;
+  padding: 0px 24px;
+}
+
+/* #form-card {
+   background-color: rgb(239, 235, 255); 
+} */
+
+#form-card-content {
+  /* border: 1px solid rgb(124, 124, 124); */
+  padding: 16px;
+}
+#createWallet-form {
+  display: flex;
+  flex-direction: row;
+}
+
 h3 {
   margin: 0px 16px;
 }
-* {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.hide {
+  display: none;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+}
+.labels label {
+  padding-bottom: 26px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+.inputs input {
+  margin-bottom: 24px;
+  margin-left: 34px;
+  padding-left: 8px;
+  border-radius: 5px;
+  border-style: none;
+  background-color: white;
+  /* padding-bottom: 8px; */
+  height: 24px;
+  width: 250px;
+}
+.radio-btn input {
+  height: 16px;
+  margin-bottom: 28px;
+  width: 12px;
+}
+
+#form-card-bottom {
+  /* position: relative; */
+  padding: 12px 0px;
+  display: flex;
+  justify-content: flex-end;
+}
+#create-btn {
+  color: rgb(255, 255, 255);
+  border-style: none;
+  padding: 8px 16px;
+  background-color: rgb(44, 124, 199);
+  border-radius: 5px;
+  margin-left: 12px;
+}
+#close-btn {
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid rgb(179, 179, 179);
+}
+h3 {
+  margin: 16px 16px;
 }
 .NowalletView {
   width: fit-content;
@@ -31,11 +115,30 @@ h3 {
   border-radius: 5px;
   border-style: none;
 }
+#walletBalance {
+  padding-left: 24px;
+}
+.transaction {
+  padding: 0px 24px 24px;
+  background-color: rgb(240, 240, 240);
+}
+.transValue.income {
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+}
+.transValue.expense {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
 .header {
   background-color: rgb(54, 50, 50);
   color: white;
   margin: 0px;
   padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
 }
 .header > p {
   margin: 0px;
@@ -46,4 +149,107 @@ body {
 #oops {
   font-size: 22px;
   font-weight: 600;
+}
+
+.transaction {
+  border: 1px solid black;
+}
+#wallets {
+  color: white;
+  background-color: rgb(44, 124, 199);
+  padding: 8px 16px;
+  border-radius: 5px;
+  border-style: none;
+}
+#transactionForm {
+  display: flex;
+  flex-direction: row;
+}
+.row1 {
+  padding: 0px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.row1 label {
+  padding-bottom: 12px;
+}
+.row1 input {
+  margin-bottom: 12px;
+  padding-left: 8px;
+  border-radius: 5px;
+  background-color: white;
+  border-style: solid;
+  border-color: rgb(201, 201, 201);
+
+  /* padding-bottom: 8px; */
+  height: 34px;
+  width: 250px;
+}
+.row2 input {
+  margin-bottom: 12px;
+  padding-left: 8px;
+  border-radius: 5px;
+  background-color: white;
+  border-style: solid;
+  border-color: rgb(201, 201, 201);
+
+  /* padding-bottom: 8px; */
+  height: 34px;
+  width: 250px;
+}
+.row2 button {
+  margin-top: 33px;
+  padding: 8px 32px;
+  border-radius: 5px;
+  border-style: none;
+  margin-bottom: 10px;
+  margin-left: 24px;
+}
+
+.row2 button {
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+}
+#incomeBtn {
+  border: 1px solid green;
+  background-color: rgb(255, 255, 255);
+  color: green;
+}
+#expenseBtn {
+  border: 1px solid red;
+  background-color: rgb(255, 255, 255);
+  color: red;
+}
+
+#incomeBtn.selected {
+  border: 1px solid green;
+  background-color: green;
+  color: white;
+}
+#expenseBtn.selected {
+  border: 1px solid red;
+  background-color: red;
+  color: white;
+}
+
+#addTransaction {
+  padding: 0px;
+  margin-top: 110px;
+  margin-bottom: 16px;
+  padding: 0px 16px;
+  background-color: rgb(0, 4, 255);
+  border-radius: 5px;
+  border-style: none;
+  color: white;
+}
+
+.tags {
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+button:hover {
+  cursor: pointer;
 }
