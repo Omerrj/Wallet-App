@@ -48,6 +48,7 @@ const transactionsList = getElement("transactions");
 const walletSelect = getElement("wallets");
 const currencies = document.getElementsByName("Currency");
 
+
 const transBtns = [incomeBtn, expenseBtn];
 
 let wallets = [];
@@ -69,7 +70,7 @@ const walletSelection = (wallets) => {
 
   wallets.forEach((wallet, i) => {
     const walletOption = document.createElement("option");
-    walletOption.text = `${wallet.name}'s Wallet`;
+    walletOption.text = `${wallet.name}`;
     walletOption.value = i;
     walletOption.id = i;
 
