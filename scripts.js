@@ -70,7 +70,7 @@ const walletSelection = (wallets) => {
 
   wallets.forEach((wallet, i) => {
     const walletOption = document.createElement("option");
-    walletOption.text = `${wallet.name}'s Wallet`;
+    walletOption.text = `${wallet.name}`;
     walletOption.value = i;
     walletOption.id = i;
 
@@ -170,6 +170,10 @@ transBtns.forEach(
     (btn.onclick = (e) => {
       e.preventDefault();
       transactionType = Number(e.target.value);
+      btn.classList.add("selected");
+      btn.nextElementSibling
+        ? btn.nextElementSibling.classList.remove("selected")
+        : btn.previousElementSibling.classList.remove("selected");
     })
 );
 
