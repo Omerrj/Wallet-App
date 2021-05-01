@@ -31,6 +31,7 @@ const createWalletForm = getElement("createWallet-form");
 const walletView = getElement("walletView");
 const noWalletView = getElement("NoWalletView");
 const formCard = getElement("form-card");
+const transactionForm = getElement("transactionForm");
 const createBtn = getElement("create-btn");
 const closeBtn = getElement("close-btn");
 
@@ -138,8 +139,8 @@ const changeWallet = (currentWallet) => {
   }
 };
 
-const resetForm = () => {
-  createWalletForm.reset();
+const resetForm = (form) => {
+  form.reset();
   selectedCurrency = null;
 };
 
@@ -155,6 +156,7 @@ currencies.forEach(
 );
 
 walletSelect.onchange = (e) => {
+  resetForm(transactionForm);
   if (Number(e.target.value) >= 0) {
     currentWallet = wallets[Number(e.target.value)];
     changeWallet(currentWallet);
@@ -190,7 +192,8 @@ createBtn.onclick = () => {
     changeWallet(currentWallet);
     walletSelection(wallets);
     show(walletSelect);
-    resetForm();
+    resetForm(createWalletForm);
+    resetForm(transactionForm);
   }
 };
 

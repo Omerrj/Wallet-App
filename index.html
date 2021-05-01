@@ -31,15 +31,24 @@
             <div class="inputs">
               <input type="text" name="Name" id="name-inp" />
               <div class="radio-btn">
-              <input type="radio" name="Currency" id="currency-inp-1" value="$" />
-              <label for="Currency">USD</label>
-              <input type="radio" name="Currency" id="currency-inp-2" value="IQD"/>
-              <label for="Currency">IQD</label>
-            </div>
+                <input
+                  type="radio"
+                  name="Currency"
+                  id="currency-inp-1"
+                  value="$"
+                />
+                <label for="Currency">USD</label>
+                <input
+                  type="radio"
+                  name="Currency"
+                  id="currency-inp-2"
+                  value="IQD"
+                />
+                <label for="Currency">IQD</label>
+              </div>
               <input type="number" name="Balance" id="balance-inp" value="0" />
               <input type="text" name="Description" id="description-inp" />
             </div>
-           
           </form>
         </div>
         <div id="form-card-bottom">
@@ -75,25 +84,30 @@
       <form id="transactionForm">
         <div class="row1">
           <label for="transaction">Make a transaction:</label>
-          <input type="number" name="transaction" id="transactionValue" value="0" />
+          <input
+            type="number"
+            name="transaction"
+            id="transactionValue"
+            value="0"
+          />
           <label for="notes">Transaction notes:</label>
           <input type="text" name="notes" id="transNotes" />
         </div>
-<div class="row2">
-        <div>
-          <button id="incomeBtn" class="transactionType" value="1">
-            Income
-          </button>
-          <button id="expenseBtn" class="transactionType" value="-1">
-            Expense
-          </button>
-        </div>
+        <div class="row2">
+          <div>
+            <button id="incomeBtn" class="transactionType" value="1">
+              Income
+            </button>
+            <button id="expenseBtn" class="transactionType" value="-1">
+              Expense
+            </button>
+          </div>
 
-        <div class="row1">
-          <label for="tags">Transaction tags:</label>
-          <input type="text" name="tags" id="transTags" />
+          <div class="row1">
+            <label for="tags">Transaction tags:</label>
+            <input type="text" name="tags" id="transTags" />
+          </div>
         </div>
-      </div>
 
         <button id="addTransaction">Add Transaction</button>
       </form>
