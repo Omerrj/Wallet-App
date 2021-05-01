@@ -27,6 +27,7 @@ class Transaction {
 const getElement = (id) => document.getElementById(id);
 
 const createWallet = getElement("createWalletBtn");
+const createWalletForm = getElement("createWallet-form");
 const walletView = getElement("walletView");
 const noWalletView = getElement("NoWalletView");
 const formCard = getElement("form-card");
@@ -44,6 +45,7 @@ const incomeBtn = getElement("incomeBtn");
 const expenseBtn = getElement("expenseBtn");
 const walletBalance = getElement("walletBalance");
 const transactionsList = getElement("transactions");
+const walletSelect = getElement("wallets");
 const currencies = document.getElementsByName("Currency");
 
 const transBtns = [incomeBtn, expenseBtn];
@@ -57,52 +59,89 @@ const show = (element) => element.classList.remove("hide");
 
 const hide = (element) => element.classList.add("hide");
 
+const selectWallet = (i) => {
+  walletSelect.options[i].setAttribute("selected", true);
+};
+
+// makes or updates the wallet selection
+const walletSelection = (wallets) => {
+  walletSelect.innerHTML = "";
+
+  wallets.forEach((wallet, i) => {
+    const walletOption = document.createElement("option");
+    walletOption.text = `${wallet.name}'s Wallet`;
+    walletOption.value = i;
+    walletOption.id = i;
+
+    walletSelect.append(walletOption);
+  });
+
+  const createOption = document.createElement("option");
+  createOption.text = "Create wallet";
+  createOption.value = -1;
+  createOption.id = -1;
+  walletSelect.append(createOption);
+  selectWallet(wallets.length - 1);
+};
+
+const expandTransaction = (transaction) => {
+  transaction.parentNode.childNodes.forEach((trans) => {
+    trans?.childNodes?.forEach((child, i) => {
+      if (i !== 0 && i !== 1)
+        !child?.classList?.contains("hide")
+          ? child?.classList?.add("hide")
+          : null;
+    });
+  });
+
+  transaction?.childNodes?.forEach((child, i) => {
+    if (i !== 0 && i !== 1)
+      child?.classList?.contains("hide")
+        ? child?.classList?.remove("hide")
+        : null;
+  });
+};
+
+// used to change or refresh the wallet view
 const changeWallet = (currentWallet) => {
   walletBalance.textContent = walletBalance.textContent.slice(0, 15);
   transactionsList.innerHTML = "";
   walletBalance.append(
-    `${selectedCurrency === "$" ? selectedCurrency : ""}${
+    `${currentWallet.currency === "$" ? currentWallet.currency : ""}${
       currentWallet.balance
-    }${selectedCurrency === "IQD" ? selectedCurrency : ""}`
+    }${currentWallet.currency === "IQD" ? currentWallet.currency : ""}`
   );
 
-  currentWallet.transactions.forEach((trans) => {
-    const transaction = document.createElement("div");
-    transaction.classList.add(["transaction", "collapsed"]);
+  if (currentWallet.transactions) {
+    currentWallet.transactions.forEach((trans) => {
+      const transaction = document.createElement("div");
+      transaction.classList.add("transaction");
 
-    transaction.innerHTML = `<p class="transValue ${
-      trans.type > 0 ? "income" : "expense"
-    }" >${trans.value}</p><p class="transDate">${trans.date
-      .toString()
-      .slice(0, 15)} | ${trans.date.toLocaleString("en-US", {
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: true,
-    })}</p><p class="transNote">${trans.note}</p>`;
-
-    transactionsList.append(transaction);
-  });
-
-  // const data = { wallets, currentWallet };
-  // window.localStorage.setItem("data", JSON.stringify(data));
+      transaction.innerHTML = `<p id='transValue' class="transValue ${
+        trans.type > 0 ? "income" : "expense"
+      }" >${
+        trans.value
+      }</p><p class="transDate" id='transDate'>${trans.date
+        .toString()
+        .slice(0, 15)} | ${trans.date.toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: true,
+      })}</p><p class="transNote hide" id='transNote'>${trans.note}</p>`;
+      trans.tags?.forEach((tag) => {
+        transaction.innerHTML += `<span id='tags' class='tags hide'>${tag}</span> `;
+      });
+      transaction.onclick = (e) => expandTransaction(transaction);
+      transactionsList.append(transaction);
+    });
+  }
 };
 
-// window.onload = (e) => {
-//   const data = JSON.parse(window.localStorage.getItem("data"));
-
-//   if (data) {
-//     console.log(data);
-//     wallets = data.wallets;
-//     currentWallet = data.currentWallet;
-
-//     console.log(currentWallet);
-//     show(walletView);
-//     hide(noWalletView);
-//     hide(formCard);
-//     changeWallet(currentWallet);
-//   }
-// };
+const resetForm = () => {
+  createWalletForm.reset();
+  selectedCurrency = null;
+};
 
 createWallet.onclick = () => show(formCard);
 
@@ -115,6 +154,15 @@ currencies.forEach(
     })
 );
 
+walletSelect.onchange = (e) => {
+  if (Number(e.target.value) >= 0) {
+    currentWallet = wallets[Number(e.target.value)];
+    changeWallet(currentWallet);
+  } else {
+    show(formCard);
+  }
+};
+
 transBtns.forEach(
   (btn) =>
     (btn.onclick = (e) => {
@@ -124,22 +172,26 @@ transBtns.forEach(
 );
 
 createBtn.onclick = () => {
-  const wallet = new Wallet(
-    nameInp.value,
-    selectedCurrency,
-    Number(balanceInp.value),
-    description.value
-  );
+  if (nameInp.value && Number(balanceInp.value) && selectedCurrency) {
+    const wallet = new Wallet(
+      nameInp.value,
+      selectedCurrency,
+      Number(balanceInp.value),
+      description.value
+    );
 
-  wallets.push(wallet);
-  console.log(wallets);
+    wallets.push(wallet);
 
-  show(walletView);
-  hide(noWalletView);
-  hide(formCard);
+    show(walletView);
+    hide(noWalletView);
+    hide(formCard);
 
-  currentWallet = wallets[wallets.length - 1];
-  changeWallet(currentWallet);
+    currentWallet = wallets[wallets.length - 1];
+    changeWallet(currentWallet);
+    walletSelection(wallets);
+    show(walletSelect);
+    resetForm();
+  }
 };
 
 addTransaction.onclick = (e) => {
@@ -153,9 +205,7 @@ addTransaction.onclick = (e) => {
       new Date()
     );
 
-    console.log(currentWallet);
     currentWallet.transaction(transaction);
-    changeWallet(wallets[0]);
-    console.log(wallets);
+    changeWallet(currentWallet);
   }
 };
